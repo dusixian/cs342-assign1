@@ -139,9 +139,9 @@ struct PatientTests{
             frequency: 1,
             duration: 90
         )
-        #expect(patient.addMedication(medication_4))
+        #expect(try patient.addMedication(medication_4))
         
-        // check add medication which: 1.not complete 2. duplicate
+        // check add medication which: 1.not complete 2. duplicated
         let medication_5 = try Medication(
             date: "2025-01-10",
             name: "Losartan",
@@ -150,9 +150,11 @@ struct PatientTests{
             frequency: 1,
             duration: 20
         )
-        #expect(!patient.addMedication(medication_5))
+        #expect(throws: MyError.duplicatedMedication){
+            try patient.addMedication(medication_5)
+        }
         
-        // check add medication which: 1. complete 2. duplicate
+        // check add medication which: 1. complete 2. duplicated
         let medication_6 = try Medication(
             date: "2024-01-11",
             name: "Losartan",
@@ -161,7 +163,7 @@ struct PatientTests{
             frequency: 1,
             duration: 90
         )
-        #expect(patient.addMedication(medication_6))
+        #expect(try patient.addMedication(medication_6))
     }
 }
 

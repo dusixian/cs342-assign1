@@ -23,7 +23,6 @@ class Patient{
     var medications: [Medication]
     var dateOfBirth: Date
     
-    // Todo : check record number
     init(firstName: String, lastName: String, height: Double, weight: Double, bloodType: BloodType = .Unknown, medications: [Medication], dateOfBirth: String) {
         self.medicalRecordNumber = Patient.idCount
         Patient.idCount += 1
@@ -46,7 +45,7 @@ class Patient{
         return sortedMedication.filter{$0.isCompleted==false}
     }
     
-    func addMedication(_ medication: Medication) -> Bool{
+    func addMedication(_ medication: Medication) throws -> Bool{
         let currMedication = self.getMedications()
         // first if the medication has completed, no need to check it
         if medication.isCompleted{
@@ -55,7 +54,7 @@ class Patient{
         }
         for med in currMedication{
             if medication.name == med.name{
-                return false
+                throw MyError.duplicatedMedication
             }
         }
         self.medications.append(medication)
