@@ -24,7 +24,7 @@ class Patient{
     var dateOfBirth: Date
     
     // Todo : check record number
-    init(firstName: String, lastName: String, height: Double, weight: Double, bloodType: BloodType, medications: [Medication], dateOfBirth: String) {
+    init(firstName: String, lastName: String, height: Double, weight: Double, bloodType: BloodType = .Unknown, medications: [Medication], dateOfBirth: String) {
         self.medicalRecordNumber = Patient.idCount
         Patient.idCount += 1
         self.firstName = firstName

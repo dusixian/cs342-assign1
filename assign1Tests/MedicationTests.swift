@@ -12,12 +12,12 @@ import Foundation
 @MainActor
 struct MedicationTests{
     @Test func checkInit() async throws{
-        let medication = Medication(
+        let medication = try Medication(
             date: "2025-01-11",
             name: "Metoprolol",
             dose: 25,
             route: "by mouth",
-            frequency: 1, // TODO: also allow "once"
+            frequency: 1,
             duration: 90
         )
         func stringFromDate(_ date: Date) -> String {
@@ -33,8 +33,42 @@ struct MedicationTests{
         #expect(medication.duration == 90)
     }
     
+    @Test func checkFrequencyInit() async throws{
+        let medication = try Medication(
+            date: "2025-01-11",
+            name: "Metoprolol",
+            dose: 25,
+            route: "by mouth",
+            frequency: "once",
+            duration: 90
+        )
+        #expect(medication.frequency==1)
+        
+        #expect(throws: MyError.invalidInput("Frequency only support string input for once, twice, and three times! Or you can input an integer value!")){
+            try Medication(
+                date: "2025-01-11",
+                name: "Metoprolol",
+                dose: 25,
+                route: "by mouth",
+                frequency: "four times",
+                duration: 90
+            )
+        }
+        
+        #expect(throws: MyError.invalidInput("Invalid input for frequency. Try an integer value or string input for once, twice, and three times!")){
+            try Medication(
+                date: "2025-01-11",
+                name: "Metoprolol",
+                dose: 25,
+                route: "by mouth",
+                frequency: 2.5,
+                duration: 90
+            )
+        }
+    }
+    
     @Test func checkCompletedLogic() async throws{
-        let medication = Medication(
+        let medication = try Medication(
             date: "2025-01-11",
             name: "Metoprolol",
             dose: 25,
@@ -44,7 +78,7 @@ struct MedicationTests{
         )
         #expect(!medication.isCompleted)
         
-        let completedMedication = Medication(
+        let completedMedication = try Medication(
             date: "2024-01-11",
             name: "Metoprolol",
             dose: 25,
@@ -54,6 +88,4 @@ struct MedicationTests{
         )
         #expect(completedMedication.isCompleted)
     }
-    
-    // Todo: Invaild init
 }
