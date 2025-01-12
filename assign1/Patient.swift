@@ -11,6 +11,7 @@ var currentDate : Date {
     return Date.now
 }
 
+
 struct Patient{
     let medicalRecordNumber: Int
     let firstName: String
@@ -20,6 +21,17 @@ struct Patient{
     var bloodType: BloodType
     var medications: [Medication]
     var dateOfBirth: Date
+    
+    init(medicalRecordNumber: Int, firstName: String, lastName: String, height: Double, weight: Double, bloodType: BloodType, medications: [Medication], dateOfBirth: String) {
+        self.medicalRecordNumber = medicalRecordNumber
+        self.firstName = firstName
+        self.lastName = lastName
+        self.height = height
+        self.weight = weight
+        self.bloodType = bloodType
+        self.medications = medications
+        self.dateOfBirth = dateFromString(dateOfBirth) ?? Date()
+    }
     
     func basicInfo() -> String{
         let age = Calendar.current.dateComponents([.year], from: dateOfBirth, to: currentDate)
@@ -31,13 +43,19 @@ struct Patient{
         return sortedMedication.filter{$0.isCompleted==false}
     }
     
-    func addMedication(_medication: Medication) -> Bool{
+    mutating func addMedication(_ medication: Medication) -> Bool{
         let currMedication = self.getMedication()
-        for medication in currMedication{
-            if medication.name == medication.name{
+        // first if the medication has completed, no need to check it
+        if medication.isCompleted{
+            self.medications.append(medication)
+            return true
+        }
+        for med in currMedication{
+            if medication.name == med.name{
                 return false
             }
         }
+        self.medications.append(medication)
         return true
     }
     

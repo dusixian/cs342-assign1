@@ -6,6 +6,12 @@
 //
 import Foundation
 
+func dateFromString(_ dateString: String) -> Date? {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter.date(from: dateString)
+}
+
 struct Medication{
     var date: Date
     var name: String
@@ -19,5 +25,14 @@ struct Medication{
             return false
         }
         return true
+    }
+    
+    init(date: String, name: String, dose: Double, route: String, frequency: Int, duration: Int) {
+        self.date = dateFromString(date) ?? Date()
+        self.name = name
+        self.dose = dose
+        self.route = route
+        self.frequency = frequency
+        self.duration = duration
     }
 }
