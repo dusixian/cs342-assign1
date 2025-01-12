@@ -12,7 +12,8 @@ var currentDate : Date {
 }
 
 
-struct Patient{
+class Patient{
+    static var idCount: Int = 0
     let medicalRecordNumber: Int
     let firstName: String
     let lastName: String
@@ -22,8 +23,10 @@ struct Patient{
     var medications: [Medication]
     var dateOfBirth: Date
     
-    init(medicalRecordNumber: Int, firstName: String, lastName: String, height: Double, weight: Double, bloodType: BloodType, medications: [Medication], dateOfBirth: String) {
-        self.medicalRecordNumber = medicalRecordNumber
+    // Todo : check record number
+    init(firstName: String, lastName: String, height: Double, weight: Double, bloodType: BloodType, medications: [Medication], dateOfBirth: String) {
+        self.medicalRecordNumber = Patient.idCount
+        Patient.idCount += 1
         self.firstName = firstName
         self.lastName = lastName
         self.height = height
@@ -35,16 +38,16 @@ struct Patient{
     
     func basicInfo() -> String{
         let age = Calendar.current.dateComponents([.year], from: dateOfBirth, to: currentDate)
-        return self.lastName + ", " + self.firstName + "(\(age))"
+        return self.lastName + ", " + self.firstName + "(\(age.year ?? 0))"
     }
     
-    func getMedication() -> [Medication]{
+    func getMedications() -> [Medication]{
         let sortedMedication: [Medication] = self.medications.sorted{$0.date < $1.date}
         return sortedMedication.filter{$0.isCompleted==false}
     }
     
-    mutating func addMedication(_ medication: Medication) -> Bool{
-        let currMedication = self.getMedication()
+    func addMedication(_ medication: Medication) -> Bool{
+        let currMedication = self.getMedications()
         // first if the medication has completed, no need to check it
         if medication.isCompleted{
             self.medications.append(medication)

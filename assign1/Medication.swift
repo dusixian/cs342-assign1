@@ -12,7 +12,7 @@ func dateFromString(_ dateString: String) -> Date? {
     return formatter.date(from: dateString)
 }
 
-struct Medication{
+struct Medication: Equatable{
     var date: Date
     var name: String
     var dose: Double
@@ -35,4 +35,6 @@ struct Medication{
         self.frequency = frequency
         self.duration = duration
     }
+    
+    
 }
