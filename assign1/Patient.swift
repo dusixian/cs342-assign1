@@ -21,7 +21,7 @@ class Patient{
     init(firstName: String, lastName: String, height: Double, weight: Double,
          bloodType: BloodType = .Unknown, medications: [Medication], dateOfBirth: String) throws{
         self.medicalRecordNumber = Patient.idCount
-        Patient.idCount += 1
+        Patient.idCount += 1 // add by one to ensure unique
         self.firstName = firstName
         self.lastName = lastName
         self.height = height
@@ -31,6 +31,7 @@ class Patient{
         self.dateOfBirth = try dateFromString(dateOfBirth)!
     }
     
+    // getAge from birth to now
     func getAge() -> Int{
         // This Calendar related usage is AI generated
         let age = Calendar.current.dateComponents([.year], from: dateOfBirth, to: currentDate)
@@ -44,8 +45,8 @@ class Patient{
     }
     
     func getMedications() -> [Medication]{
-        let sortedMedication: [Medication] = self.medications.sorted{$0.date < $1.date}
-        return sortedMedication.filter{$0.isCompleted==false}
+        let sortedMedication: [Medication] = self.medications.sorted{$0.date < $1.date} // sort
+        return sortedMedication.filter{$0.isCompleted==false} // only include not completed medications
     }
     
     func addMedication(_ medication: Medication) throws -> Bool{
@@ -55,6 +56,7 @@ class Patient{
             self.medications.append(medication)
             return true
         }
+        // not completed
         for med in currMedication{
             if medication.name == med.name{
                 throw MyError.duplicatedMedication
@@ -64,6 +66,7 @@ class Patient{
         return true
     }
     
+    // return a compatible blood type list
     func getCompatibleBloodType() throws -> [BloodType]{
         switch self.bloodType{
         case .ABp:
@@ -87,6 +90,7 @@ class Patient{
         }
     }
     
+    // check if a specific blood type is compatible
     func checkCompatibleBloodType(_ receivedType: BloodType) throws -> Bool{
         let compatibleBloodTypes = try self.getCompatibleBloodType()
         return compatibleBloodTypes.contains(receivedType)

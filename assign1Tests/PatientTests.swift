@@ -49,6 +49,7 @@ struct PatientTests{
     @Test func checkRecordNumber() async throws{
         var recordLists: [Int] = []
         var patients: [Patient] = []
+        // create 100 instances for patient, check whether the medicalRecordNumbers duplicate
         for _ in 0..<100{
             let patient = try Patient(
                 firstName: "Alice",
@@ -66,6 +67,9 @@ struct PatientTests{
     }
     
     @Test func checkBasicInfo() async throws{
+        var age_22 = Calendar.current.date(byAdding: .year, value: -22, to: currentDate)!
+        age_22 = Calendar.current.date(byAdding: .day, value: -1, to: age_22)!
+
         let patient = try Patient(
             firstName: "Alice",
             lastName: "A",
@@ -73,9 +77,9 @@ struct PatientTests{
             weight: 60,
             bloodType: .Bp,
             medications: [],
-            dateOfBirth: "2002-07-02"
+            dateOfBirth: stringFromDate(age_22)
         )
-        // TODO: correct for years later
+        
         #expect(patient.basicInfo() == "A, Alice(22)")
     }
     
@@ -86,7 +90,7 @@ struct PatientTests{
             name: "Metoprolol",
             dose: 25,
             route: "by mouth",
-            frequency: 1, // todo: also allow "once"
+            frequency: 1,
             duration: 90
         )
         
@@ -95,7 +99,7 @@ struct PatientTests{
             name: "Aspirin",
             dose: 81,
             route: "by mouth",
-            frequency: 1, // todo: also allow "once"
+            frequency: 1,
             duration: 90
         )
         

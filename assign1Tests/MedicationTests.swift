@@ -41,6 +41,7 @@ struct MedicationTests{
     }
     
     @Test func checkFrequencyInit() async throws{
+        // check correct str input for frequency
         let medication = try Medication(
             date: "2025-01-11",
             name: "Metoprolol",
@@ -51,6 +52,7 @@ struct MedicationTests{
         )
         #expect(medication.frequency==1)
         
+        // check invalid str input for frequency
         #expect(throws: MyError.invalidInput("Frequency only support string input for once, twice, and three times! Or you can input an integer value!")){
             try Medication(
                 date: "2025-01-11",
@@ -62,6 +64,7 @@ struct MedicationTests{
             )
         }
         
+        // check invalid input type for frequency
         #expect(throws: MyError.invalidInput("Invalid input for frequency. Try an integer value or string input for once, twice, and three times!")){
             try Medication(
                 date: "2025-01-11",

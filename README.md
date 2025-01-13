@@ -11,7 +11,7 @@ Defined as an enumeration to list all blood types. Includes an "unknown" type, w
 
 ### Medication
 #### Fields
-- Basic fields as specified in the requirements (name, dose, etc.).
+- Basic fields as specified in the requirements (`name`, `dose`, etc.).
 - date: Uses the `Date` type from Foundation.
 - isCompleted: A read-only property. Returns `false` if the end date (calculated as the prescribed date + duration) is later than the current date. Otherwise, returns `true`.
 
@@ -41,6 +41,11 @@ Defined as an enumeration to list all blood types. Includes an "unknown" type, w
 - currentDate: Returns the current date.
 - dateFromString: Converts a string (e.g., `"2025-01-12"`) to a `Date` type. Throws an `invalidInput` error if the conversion fails.
 - stringFromDate: Converts a `Date` type to a string (e.g., `"2025-01-12"`).
+
+### Error
+- invalidInput
+- duplicatedMedication: used in Patient/addMedication
+- missingBloodType: used in Patient/getCompatibleBloodType
 
 ## Unit Tests
 - Two files:
