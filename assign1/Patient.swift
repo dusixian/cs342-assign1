@@ -7,11 +7,6 @@
 
 import Foundation
 
-var currentDate : Date {
-    return Date.now
-}
-
-
 class Patient{
     static var idCount: Int = 0
     let medicalRecordNumber: Int
@@ -23,7 +18,8 @@ class Patient{
     var medications: [Medication]
     var dateOfBirth: Date
     
-    init(firstName: String, lastName: String, height: Double, weight: Double, bloodType: BloodType = .Unknown, medications: [Medication], dateOfBirth: String) {
+    init(firstName: String, lastName: String, height: Double, weight: Double,
+         bloodType: BloodType = .Unknown, medications: [Medication], dateOfBirth: String) throws{
         self.medicalRecordNumber = Patient.idCount
         Patient.idCount += 1
         self.firstName = firstName
@@ -32,12 +28,19 @@ class Patient{
         self.weight = weight
         self.bloodType = bloodType
         self.medications = medications
-        self.dateOfBirth = dateFromString(dateOfBirth) ?? Date()
+        self.dateOfBirth = try dateFromString(dateOfBirth)!
+    }
+    
+    func getAge() -> Int{
+        // This Calendar related usage is AI generated
+        let age = Calendar.current.dateComponents([.year], from: dateOfBirth, to: currentDate)
+        return age.year ?? 0
     }
     
     func basicInfo() -> String{
-        let age = Calendar.current.dateComponents([.year], from: dateOfBirth, to: currentDate)
-        return self.lastName + ", " + self.firstName + "(\(age.year ?? 0))"
+        // This Calendar related usage is AI generated
+        let age = self.getAge()
+        return self.lastName + ", " + self.firstName + "(\(age))"
     }
     
     func getMedications() -> [Medication]{

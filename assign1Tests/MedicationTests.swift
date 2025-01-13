@@ -20,17 +20,24 @@ struct MedicationTests{
             frequency: 1,
             duration: 90
         )
-        func stringFromDate(_ date: Date) -> String {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            return formatter.string(from: date)
-        }
         #expect(stringFromDate(medication.date) == "2025-01-11")
         #expect(medication.name == "Metoprolol")
         #expect(medication.dose == 25.0)
         #expect(medication.route == "by mouth")
         #expect(medication.frequency == 1)
         #expect(medication.duration == 90)
+        
+        // check invalid datestr format
+        #expect(throws: MyError.invalidInput("Wrong date format! Using yyyy-MM-dd")){
+            try Medication(
+                date: "20250111",
+                name: "Metoprolol",
+                dose: 25,
+                route: "by mouth",
+                frequency: 1,
+                duration: 90
+            )
+        }
     }
     
     @Test func checkFrequencyInit() async throws{

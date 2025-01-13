@@ -6,12 +6,6 @@
 //
 import Foundation
 
-func dateFromString(_ dateString: String) -> Date? {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
-    return formatter.date(from: dateString)
-}
-
 struct Medication: Equatable{
     var date: Date
     var name: String
@@ -20,6 +14,7 @@ struct Medication: Equatable{
     var frequency: Int = 0
     var duration: Int
     var isCompleted: Bool {
+        // This Calendar related usage is AI generated
         let endDate = Calendar.current.date(byAdding: .day, value: duration, to: date)!
         if endDate > currentDate{
             return false
@@ -28,7 +23,7 @@ struct Medication: Equatable{
     }
     
     init(date: String, name: String, dose: Double, route: String, frequency: Any, duration: Int) throws {
-        self.date = dateFromString(date) ?? Date()
+        self.date = try dateFromString(date) ?? Date()
         self.name = name
         self.dose = dose
         self.route = route

@@ -9,16 +9,10 @@ import Testing
 import Foundation
 @testable import assign1
 
-func stringFromDate(_ date: Date) -> String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
-    return formatter.string(from: date)
-}
-
 @MainActor
 struct PatientTests{
     @Test func checkInit() async throws{
-        let patient = Patient(
+        let patient = try Patient(
             firstName: "Alice",
             lastName: "A",
             height: 162,
@@ -37,7 +31,7 @@ struct PatientTests{
         #expect(stringFromDate(patient.dateOfBirth) == "2002-07-02")
         
         // situation when missing bloodtype
-        var patient_2 = Patient(
+        var patient_2 = try Patient(
             firstName: "Alice",
             lastName: "A",
             height: 162,
@@ -56,7 +50,7 @@ struct PatientTests{
         var recordLists: [Int] = []
         var patients: [Patient] = []
         for _ in 0..<100{
-            let patient = Patient(
+            let patient = try Patient(
                 firstName: "Alice",
                 lastName: "A",
                 height: 162,
@@ -72,7 +66,7 @@ struct PatientTests{
     }
     
     @Test func checkBasicInfo() async throws{
-        let patient = Patient(
+        let patient = try Patient(
             firstName: "Alice",
             lastName: "A",
             height: 162,
@@ -105,7 +99,7 @@ struct PatientTests{
             duration: 90
         )
         
-        var patient = Patient(
+        var patient = try Patient(
             firstName: "Alice",
             lastName: "A",
             height: 162,
