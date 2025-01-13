@@ -64,4 +64,32 @@ class Patient{
         return true
     }
     
+    func getCompatibleBloodType() throws -> [BloodType]{
+        switch self.bloodType{
+        case .ABp:
+            return [.ABn, .ABp, .An, .Ap, .Bn, .Bp, .On, .Op]
+        case .ABn:
+            return [.On, .Bn, .An, .ABn]
+        case .Ap:
+            return [.On, .Op, .An, .Ap]
+        case .An:
+            return [.On, .An]
+        case .Bp:
+            return [.On, .Op, .Bn, .Bp]
+        case .Bn:
+            return [.On, .Bn]
+        case .Op:
+            return [.On, .Op]
+        case .On:
+            return [.On]
+        default:
+            throw MyError.missingBloodType
+        }
+    }
+    
+    func checkCompatibleBloodType(_ receivedType: BloodType) throws -> Bool{
+        let compatibleBloodTypes = try self.getCompatibleBloodType()
+        return compatibleBloodTypes.contains(receivedType)
+    }
+    
 }

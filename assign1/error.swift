@@ -8,4 +8,5 @@
 enum MyError: Error, Equatable{
     case invalidInput(String)
     case duplicatedMedication
+    case missingBloodType
 }

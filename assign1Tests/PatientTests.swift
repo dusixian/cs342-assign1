@@ -31,7 +31,7 @@ struct PatientTests{
         #expect(stringFromDate(patient.dateOfBirth) == "2002-07-02")
         
         // situation when missing bloodtype
-        var patient_2 = try Patient(
+        let patient_2 = try Patient(
             firstName: "Alice",
             lastName: "A",
             height: 162,
@@ -99,7 +99,7 @@ struct PatientTests{
             duration: 90
         )
         
-        var patient = try Patient(
+        let patient = try Patient(
             firstName: "Alice",
             lastName: "A",
             height: 162,
@@ -158,6 +158,28 @@ struct PatientTests{
             duration: 90
         )
         #expect(try patient.addMedication(medication_6))
+    }
+    
+    @Test func checkReceiveBlood() async throws{
+        let patient = try Patient(
+            firstName: "Alice",
+            lastName: "A",
+            height: 162,
+            weight: 60,
+            medications: [],
+            dateOfBirth: "2002-07-02"
+        )
+        #expect(throws: MyError.missingBloodType){
+            try patient.getCompatibleBloodType()
+        }
+        #expect(throws: MyError.missingBloodType){
+            try patient.checkCompatibleBloodType(BloodType.On)
+        }
+        
+        patient.bloodType = BloodType.ABn
+        #expect(try patient.getCompatibleBloodType() == [.On, .Bn, .An, .ABn])
+        #expect(try !patient.checkCompatibleBloodType(BloodType.Op))
+        #expect(try patient.checkCompatibleBloodType(BloodType.An))
     }
 }
 
