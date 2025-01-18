@@ -6,7 +6,8 @@
 //
 import Foundation
 
-struct Medication: Equatable{
+struct Medication: Equatable, Identifiable{
+    let id: UUID = UUID()
     var date: Date
     var name: String
     var dose: Double
@@ -23,12 +24,24 @@ struct Medication: Equatable{
         return true
     }
     
-    init(date: String, name: String, dose: Double, route: String, frequency: Any, duration: Int) throws {
-        self.date = try dateFromString(date) ?? Date()
+    
+    init(date: Any, name: String, dose: Double, route: String, frequency: Any, duration: Int) throws {
+//        self.date = try dateFromString(date) ?? Date()
         self.name = name
         self.dose = dose
         self.route = route
         self.duration = duration
+        
+        if let d = date as? Date{
+            self.date = d
+        }
+        else if let d = date as? String{
+            self.date = try dateFromString(d)!
+        }
+        else{
+            throw(MyError.invalidInput("Invalid input for date."))
+        }
+        
         self.frequency = try frequency2Int(frequency)
     }
     

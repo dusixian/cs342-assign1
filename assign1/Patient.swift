@@ -7,7 +7,8 @@
 
 import Foundation
 
-class Patient{
+@Observable
+class Patient: Identifiable, Hashable{
     static var idCount: Int = 0
     let medicalRecordNumber: Int
     let firstName: String
@@ -15,11 +16,23 @@ class Patient{
     var height: Double
     let weight: Double
     var bloodType: BloodType
+    var gender: Gender = .Unknown
     var medications: [Medication]
     var dateOfBirth: Date
+    var age: Int {
+        return getAge()
+    }
     
-    init(firstName: String, lastName: String, height: Double, weight: Double,
-         bloodType: BloodType = .Unknown, medications: [Medication], dateOfBirth: String) throws{
+    static func == (lhs: Patient, rhs: Patient) -> Bool {
+        return lhs.medicalRecordNumber == rhs.medicalRecordNumber
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(medicalRecordNumber)
+    }
+    
+    init(firstName: String, lastName: String, height: Double, weight: Double, gender: Gender = Gender.Unknown,
+         bloodType: BloodType = BloodType.Unknown, medications: [Medication], dateOfBirth: Any) throws{
         self.medicalRecordNumber = Patient.idCount
         Patient.idCount += 1 // add by one to ensure unique
         self.firstName = firstName
@@ -28,7 +41,16 @@ class Patient{
         self.weight = weight
         self.bloodType = bloodType
         self.medications = medications
-        self.dateOfBirth = try dateFromString(dateOfBirth)!
+        self.gender = gender
+        if let d = dateOfBirth as? Date{
+            self.dateOfBirth = d
+        }
+        else if let d = dateOfBirth as? String{
+            self.dateOfBirth = try dateFromString(d)!
+        }
+        else{
+            throw(MyError.invalidInput("Invalid input for date of birth."))
+        }
     }
     
     // getAge from birth to now

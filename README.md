@@ -1,3 +1,55 @@
+# Sixian Du's Submission for Assignment 2 - CS342
+## File Organization
+- assign1/: Contains frontend (UI, which file name ends with "View") and backend (data types definitions and methods)
+- assign1Tests/: Contains unit tests for data type logic.
+- assign1UITests/: Contains tests for UI logic.
+
+## UI Design
+### Patient List View
+* Alphabetically sorted list by last name
+* Each patient entry shows Full name (Age) and Medical record number
+* Tapping on a patient entry navigates to the patient detail view
+* Tapping "Add Patient" button to the new patient form (open as a sheet)
+* Search by last name
+
+### New Patient Form
+* Required fields: First name, Last name, Date of birth, Height, Weight
+* Optional fields: Gender (new added!), Blood type
+* Form validation Check: 
+    * whether height can be converted to double type
+    * whether weight can be converted to double type
+    * whether the patient instance can be successfully created
+    * else, show alert (including which field is invalid)
+* Save button to save the new patient. Disabled when missing any required field
+* Cancel button return to the patient list view
+
+### Patient Detail View
+* section 1: displays all patient details
+* section 2: 
+    * displays current medications (with all details)
+    * Button to prescribe new medications (opens Prescribe Medication View as a sheet)
+
+### Prescribe Medication View
+* Required medication details: Name, Dose, Route, Frequency, Duration
+* Form validation Check: 
+    * whether dose can be converted to double type
+    * whether frequency can be converted to int type
+    * whether duration can be converted to int type
+    * whether the medication instance can be successfully created
+    * else, show alert (including which field is invalid)
+* Save button to save the new medication. Disabled when missing any required field
+* Check for duplicate medications before saving. If duplicate, show alert.
+* Cancel button return to the patient details view
+
+## UI Test
+1. Tap add patient button to create a new patient. Fill in all required fields, save patient. Automatically return to the patient list. Check if the new-added patient entry exist.
+2. Tap the new-added patient entry. Tap add medication button to create new medication. Fill in all required fields, save medication. Automatically return to the patient details. Check if the new-added medication entry exist.
+3. Tap add medication button to create duplicate medication (name is same as previous). Check if duplicate medication alert shows.
+
+## AI Integration
+This assignment uses AI ([shared link](https://chatgpt.com/share/678b2759-d588-8006-9938-5aef806a3117)). Code that integrates with AI is commented in the repository.
+
+
 # Sixian Du's Submission for Assignment 1 - CS342
 
 ## File Organization

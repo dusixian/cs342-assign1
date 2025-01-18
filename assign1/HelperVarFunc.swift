@@ -11,6 +11,12 @@ var currentDate : Date {
     return Date.now
 }
 
+enum Gender: String{
+    case Unknown = "Unknown"
+    case Male = "Male"
+    case Female = "Female"
+}
+
 // This function is AI generated
 func dateFromString(_ dateString: String) throws-> Date? {
     let formatter = DateFormatter()
