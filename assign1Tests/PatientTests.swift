@@ -153,7 +153,7 @@ struct PatientTests{
         let medication_4 = try Medication(
             date: dateFromString("2025-01-11"),
             name: "Losartan",
-            dose: 12.5,
+            dose: 12,
             route: Route.byMouth,
             frequency: 1,
             duration: 90
@@ -177,7 +177,7 @@ struct PatientTests{
         let medication_6 = try Medication(
             date: dateFromString("2024-01-11"),
             name: "Losartan",
-            dose: 12.5,
+            dose: 12,
             route: Route.byMouth,
             frequency: 1,
             duration: 90

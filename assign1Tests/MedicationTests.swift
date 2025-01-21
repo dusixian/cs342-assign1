@@ -22,7 +22,7 @@ struct MedicationTests{
         )
         #expect(stringFromDate(medication.date) == "2025-01-11")
         #expect(medication.name == "Metoprolol")
-        #expect(medication.dose == 25.0)
+        #expect(medication.dose == 25)
         #expect(medication.route == Route.byMouth)
         #expect(medication.frequency == 1)
         #expect(medication.duration == 90)

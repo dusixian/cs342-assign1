@@ -119,12 +119,12 @@ struct PatientFormView: View {
         
         // check valid
         
-        guard let heightValue = Double(height) else {
+        guard let heightValue = Int(height) else {
             alertMessage = "Please enter a valid height."
             return
         }
 
-        guard let weightValue = Double(weight) else {
+        guard let weightValue = Int(weight) else {
             alertMessage = "Please enter a valid weight."
             return
         }

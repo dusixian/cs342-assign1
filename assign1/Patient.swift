@@ -13,8 +13,8 @@ class Patient: Identifiable, Hashable{
     let medicalRecordNumber: UUID = UUID()
     let firstName: String
     let lastName: String
-    var height: Double
-    let weight: Double
+    var height: Int
+    let weight: Int
     var bloodType: BloodType?
     var gender: Gender?
     var medications: [Medication]
@@ -31,7 +31,7 @@ class Patient: Identifiable, Hashable{
         hasher.combine(medicalRecordNumber)
     }
     
-    init(firstName: String, lastName: String, height: Double, weight: Double, gender: Gender? = nil,
+    init(firstName: String, lastName: String, height: Int, weight: Int, gender: Gender? = nil,
          bloodType: BloodType? = nil, medications: [Medication], dateOfBirth: Date) throws{
         guard dateOfBirth <= Date() else {
             throw MyError.invalidInput("Date of birth cannot be in the future.")

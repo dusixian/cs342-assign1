@@ -115,7 +115,7 @@ struct MedicationSheetView: View {
     func saveMedication(){
         // check valid
         
-        guard let doseValue = Double(dose) else {
+        guard let doseValue = Int(dose) else {
             alertTitle = "Invalid Input"
             alertMessage = "Please enter a valid dose."
             return

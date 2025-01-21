@@ -17,7 +17,7 @@ struct Medication: Equatable, Identifiable{
     let id: UUID = UUID()
     var date: Date
     var name: String
-    var dose: Double
+    var dose: Int
     var route: Route
     var frequency: Int = 0
     var duration: Int
@@ -32,7 +32,7 @@ struct Medication: Equatable, Identifiable{
     }
     
     
-    init(date: Date, name: String, dose: Double, route: Route, frequency: Int, duration: Int) throws {
+    init(date: Date, name: String, dose: Int, route: Route, frequency: Int, duration: Int) throws {
         self.date = date
         self.name = name
         self.dose = dose
