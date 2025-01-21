@@ -96,7 +96,7 @@ struct PatientTests{
             lastName: "A",
             height: 162,
             weight: 60,
-            bloodType: .Bp,
+            bloodType: BloodType.Bp,
             medications: [],
             dateOfBirth: age_22
         )
@@ -109,7 +109,7 @@ struct PatientTests{
         let medication_1 = try Medication(
             date: dateFromString("2025-01-11"),
             name: "Metoprolol",
-            dose: 25,
+            dose: Dosage(value:25, unit:Dosage.Unit.mg),
             route: Route.byMouth,
             frequency: 1,
             duration: 90
@@ -118,7 +118,7 @@ struct PatientTests{
         let medication_2 = try Medication(
             date: dateFromString("2025-01-01"),
             name: "Aspirin",
-            dose: 81,
+            dose: Dosage(value:81, unit:Dosage.Unit.mg),
             route: Route.byMouth,
             frequency: 1,
             duration: 90
@@ -140,7 +140,7 @@ struct PatientTests{
         let medication_3 = try Medication(
             date: dateFromString("2024-01-11"),
             name: "Metoprolol",
-            dose: 25,
+            dose: Dosage(value:25, unit:Dosage.Unit.mg),
             route: Route.byMouth,
             frequency: 1,
             duration: 90
@@ -153,7 +153,7 @@ struct PatientTests{
         let medication_4 = try Medication(
             date: dateFromString("2025-01-11"),
             name: "Losartan",
-            dose: 12,
+            dose: Dosage(value:12, unit:Dosage.Unit.mg),
             route: Route.byMouth,
             frequency: 1,
             duration: 90
@@ -164,7 +164,7 @@ struct PatientTests{
         let medication_5 = try Medication(
             date: dateFromString("2025-01-10"),
             name: "Losartan",
-            dose: 1,
+            dose: Dosage(value:1, unit:Dosage.Unit.mg),
             route: Route.byMouth,
             frequency: 1,
             duration: 20
@@ -177,7 +177,7 @@ struct PatientTests{
         let medication_6 = try Medication(
             date: dateFromString("2024-01-11"),
             name: "Losartan",
-            dose: 12,
+            dose: Dosage(value:12, unit:Dosage.Unit.mg),
             route: Route.byMouth,
             frequency: 1,
             duration: 90

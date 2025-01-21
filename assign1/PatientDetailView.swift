@@ -62,7 +62,7 @@ struct PatientDetailView: View {
                             Text("\(medication.name)")
                                 .font(.headline)
                                 .foregroundColor(.blue)
-                            Text("Taking \(String(format: "%.2f", medication.dose)) mg \(medication.route)")
+                            Text("Taking \(medication.dose.value) \(medication.dose.unit) \(medication.route)")
                             Text("\(medication.frequency) time(s) per day for \(medication.duration) days")
 //                            Text("Dose: \(medication.dose) mg")
 //                            Text("Route: \(medication.route)")

@@ -15,14 +15,15 @@ struct MedicationTests{
         let medication = try Medication(
             date: dateFromString("2025-01-11"),
             name: "Metoprolol",
-            dose: 25,
+            dose: Dosage(value:25, unit:Dosage.Unit.mg),
             route: Route.byMouth,
             frequency: 1,
             duration: 90
         )
         #expect(stringFromDate(medication.date) == "2025-01-11")
         #expect(medication.name == "Metoprolol")
-        #expect(medication.dose == 25)
+        #expect(medication.dose.value == 25)
+        #expect(medication.dose.unit == Dosage.Unit.mg)
         #expect(medication.route == Route.byMouth)
         #expect(medication.frequency == 1)
         #expect(medication.duration == 90)
@@ -81,7 +82,7 @@ struct MedicationTests{
         let medication = try Medication(
             date: dateFromString("2025-01-11"),
             name: "Metoprolol",
-            dose: 25,
+            dose: Dosage(value:25, unit:Dosage.Unit.mg),
             route: Route.byMouth,
             frequency: 1,
             duration: 90
@@ -91,7 +92,7 @@ struct MedicationTests{
         let completedMedication = try Medication(
             date: dateFromString("2024-01-11"),
             name: "Metoprolol",
-            dose: 25,
+            dose: Dosage(value:25, unit:Dosage.Unit.mg),
             route: Route.byMouth,
             frequency: 1,
             duration: 90

@@ -13,11 +13,26 @@ enum Route: String{
     case other = "other"
 }
 
+struct Dosage: Equatable{
+    enum Unit: String{
+        case mg = "mg"
+        case ml = "ml"
+        case g = "g"
+    }
+    var value: Int
+    var unit: Unit
+    
+    init(value: Int, unit: Unit) {
+        self.value = value
+        self.unit = unit
+    }
+}
+
 struct Medication: Equatable, Identifiable{
     let id: UUID = UUID()
     var date: Date
     var name: String
-    var dose: Int
+    var dose: Dosage
     var route: Route
     var frequency: Int = 0
     var duration: Int
@@ -32,7 +47,7 @@ struct Medication: Equatable, Identifiable{
     }
     
     
-    init(date: Date, name: String, dose: Int, route: Route, frequency: Int, duration: Int) throws {
+    init(date: Date, name: String, dose: Dosage, route: Route, frequency: Int, duration: Int) throws {
         self.date = date
         self.name = name
         self.dose = dose

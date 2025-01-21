@@ -14,7 +14,8 @@ struct MedicationSheetView: View {
     @State var patient: Patient
     @State private var name: String = ""
     @State private var dose: String = ""
-    @State private var route: String = ""
+    @State private var unit: String = "mg"
+    @State private var route: String = "by mouth"
     @State private var frequency: String = ""
     @State private var duration: String = ""
     
@@ -32,11 +33,25 @@ struct MedicationSheetView: View {
                     TextField("Name", text: $name)
                         .multilineTextAlignment(.trailing)
                 }
+//                HStack {
+//                    Text("Dose (mg)")
+//                    TextField("Dose", text: $dose)
+//                        .keyboardType(.decimalPad)
+//                        .multilineTextAlignment(.trailing)
+//                }
                 HStack {
-                    Text("Dose (mg)")
-                    TextField("Dose", text: $dose)
+                    Text("Dose")
+                        .frame(maxWidth: .infinity, alignment: .leading) // 左对齐
+                    
+                    TextField("Value", text: $dose)
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
+                    
+                    Picker("", selection: $unit) {
+                        Text("mg").tag("mg")
+                        Text("g").tag("g")
+                        Text("ml").tag("ml")
+                    }.accessibilityIdentifier("doseUnitPicker")
                 }
 //                HStack {
 //                    Text("Route")
@@ -50,7 +65,8 @@ struct MedicationSheetView: View {
                     Text("topical").tag("topical")
                     Text("other").tag("other")
                 }
-                .accessibilityIdentifier("routePicker")
+                    .accessibilityIdentifier("routePicker")
+                
                 HStack {
                     Text("Frequency (per day)")
                     TextField("Frequency", text: $frequency)
@@ -137,7 +153,7 @@ struct MedicationSheetView: View {
             let newMedication = try Medication(
                 date: Date(),
                 name: name,
-                dose: doseValue,
+                dose: Dosage(value:doseValue, unit:Dosage.Unit(rawValue: unit) ?? Dosage.Unit.mg),
                 route: Route(rawValue: route) ?? Route.other,
                 frequency: frequencyValue,
                 duration: durationValue

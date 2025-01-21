@@ -78,7 +78,7 @@ final class assign1UITests: XCTestCase {
         medicationNameField.tap()
         medicationNameField.typeText("Aspirin")
         
-        let medicationDoseField = app.textFields["Dose"]
+        let medicationDoseField = app.textFields["Value"]
         XCTAssertTrue(medicationDoseField.exists)
         medicationDoseField.tap()
         medicationDoseField.typeText("10")
@@ -88,7 +88,7 @@ final class assign1UITests: XCTestCase {
 //        medicationRouteField.tap()
 //        medicationRouteField.typeText("by mouth")
         
-        let medicationRoutePicker = app.buttons["Route"]
+        let medicationRoutePicker = app.buttons["routePicker"]
         XCTAssertTrue(medicationRoutePicker.exists)
         medicationRoutePicker.tap()
         app.buttons["by mouth"].tap()
