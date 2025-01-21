@@ -128,6 +128,11 @@ struct PatientFormView: View {
             alertMessage = "Please enter a valid weight."
             return
         }
+        
+        guard birthday <= Date() else {
+            alertMessage = "Date of Birth must be in the past."
+            return
+        }
 
 
         do {
