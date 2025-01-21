@@ -4,6 +4,17 @@
 - assign1Tests/: Contains unit tests for data type logic.
 - assign1UITests/: Contains tests for UI logic.
 
+## Changes based on assign1 feedback
+* Remove the use of "any" type when init instance (Medication and Patient)
+* Patient.basicInfo use proper String interpolation
+* For Blood type, making it an optional property in Patient instead of an "unknown" type
+* Using UUID as Patient.medicalRecordID
+* In medication, changed dosage a dedicated type containing a value and a unit (enum with "mg", "g", "ml")
+* Avoid storing quantifiable values (e.g., weight, height) as floating-point numbers, using Int.
+* The dateOfBirth in a Patient be validated in the initializer, failing if the date of birth is in the future.
+* Use an enum type for route in medication.
+* (not from feedback, but also changes in backend) Add "gender" optional field in Patient.
+
 ## UI Design
 ### Patient List View
 * Alphabetically sorted list by last name
