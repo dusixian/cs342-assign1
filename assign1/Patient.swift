@@ -33,6 +33,9 @@ class Patient: Identifiable, Hashable{
     
     init(firstName: String, lastName: String, height: Double, weight: Double, gender: Gender? = nil,
          bloodType: BloodType? = nil, medications: [Medication], dateOfBirth: Date) throws{
+        guard dateOfBirth <= Date() else {
+            throw MyError.invalidInput("Date of birth cannot be in the future.")
+        }
         self.firstName = firstName
         self.lastName = lastName
         self.height = height
