@@ -20,7 +20,7 @@ struct PatientDetailView: View {
                     VStack(alignment: .leading){
                         Text("Gender")
                             .font(.subheadline)
-                        Text(patient.gender.rawValue)
+                        Text(patient.gender?.rawValue ?? "Not Set")
                             .foregroundColor(.blue)
                     }
                     VStack(alignment: .leading) {
@@ -44,7 +44,7 @@ struct PatientDetailView: View {
                     VStack(alignment: .leading){
                         Text("Blood Type")
                             .font(.subheadline)
-                        Text(patient.bloodType.rawValue)
+                        Text(patient.bloodType?.rawValue ?? "Not Set")
                             .foregroundColor(.blue)
                     }
                 }

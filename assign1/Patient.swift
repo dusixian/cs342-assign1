@@ -9,14 +9,14 @@ import Foundation
 
 @Observable
 class Patient: Identifiable, Hashable{
-    static var idCount: Int = 0
-    let medicalRecordNumber: Int
+//    static var idCount: Int = 0
+    let medicalRecordNumber: UUID = UUID()
     let firstName: String
     let lastName: String
     var height: Double
     let weight: Double
-    var bloodType: BloodType
-    var gender: Gender = .Unknown
+    var bloodType: BloodType?
+    var gender: Gender?
     var medications: [Medication]
     var dateOfBirth: Date
     var age: Int {
@@ -31,10 +31,10 @@ class Patient: Identifiable, Hashable{
         hasher.combine(medicalRecordNumber)
     }
     
-    init(firstName: String, lastName: String, height: Double, weight: Double, gender: Gender = Gender.Unknown,
-         bloodType: BloodType = BloodType.Unknown, medications: [Medication], dateOfBirth: Any) throws{
-        self.medicalRecordNumber = Patient.idCount
-        Patient.idCount += 1 // add by one to ensure unique
+    init(firstName: String, lastName: String, height: Double, weight: Double, gender: Gender? = nil,
+         bloodType: BloodType? = nil, medications: [Medication], dateOfBirth: Any) throws{
+//        self.medicalRecordNumber = Patient.idCount
+//        Patient.idCount += 1 // add by one to ensure unique
         self.firstName = firstName
         self.lastName = lastName
         self.height = height
@@ -63,7 +63,7 @@ class Patient: Identifiable, Hashable{
     func basicInfo() -> String{
         // This Calendar related usage is AI generated
         let age = self.getAge()
-        return self.lastName + ", " + self.firstName + "(\(age))"
+        return "\(self.lastName), \(self.firstName)(\(age))"
     }
     
     func getMedications() -> [Medication]{

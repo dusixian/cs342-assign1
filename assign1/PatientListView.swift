@@ -18,7 +18,7 @@ struct PatientListView: View {
         try! Patient(
             firstName: "Chandler", lastName: "Bing", height: 172, weight: 50, gender: Gender.Male, bloodType: BloodType.Ap, medications: [], dateOfBirth: "2001-06-03"),
         try! Patient(
-            firstName: "Ross", lastName: "Geller", height: 180, weight: 78, gender: Gender.Unknown, bloodType: BloodType.On, medications: [], dateOfBirth: "1996-10-06"),
+            firstName: "Ross", lastName: "Geller", height: 180, weight: 78, medications: [], dateOfBirth: "1996-10-06"),
         try! Patient(
             firstName: "Monica", lastName: "Geller", height: 160, weight: 48, gender: Gender.Female, bloodType: BloodType.On, medications: [], dateOfBirth: "2000-09-06")
     ]
@@ -40,7 +40,7 @@ struct PatientListView: View {
                             Text("\(patient.lastName), \(patient.firstName) (\(patient.age))")
                                 .font(.headline)
                                 .foregroundColor(.primary)
-                            Text("ID: \(String(format: "%05d", patient.medicalRecordNumber))")
+                            Text("ID: \(patient.medicalRecordNumber)")
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                         }

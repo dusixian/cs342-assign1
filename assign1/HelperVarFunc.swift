@@ -12,7 +12,7 @@ var currentDate : Date {
 }
 
 enum Gender: String{
-    case Unknown = "Unknown"
+//    case Unknown = "Unknown"
     case Male = "Male"
     case Female = "Female"
 }

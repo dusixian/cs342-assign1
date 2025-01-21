@@ -136,8 +136,8 @@ struct PatientFormView: View {
                 lastName: lastName,
                 height: heightValue,
                 weight: weightValue,
-                gender: Gender(rawValue: gender) ?? Gender.Unknown,
-                bloodType: BloodType(rawValue: bloodType) ?? BloodType.Unknown,
+                gender: Gender(rawValue: gender),
+                bloodType: BloodType(rawValue: bloodType),
                 medications: [],
                 dateOfBirth: stringFromDate(birthday)
             )

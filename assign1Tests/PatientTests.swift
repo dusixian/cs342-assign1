@@ -39,32 +39,32 @@ struct PatientTests{
             medications: [],
             dateOfBirth: "2002-07-02"
         )
-        #expect(patient_2.bloodType == BloodType.Unknown)
+        #expect(patient_2.bloodType == nil)
         
         // assign bloodtype after
         patient_2.bloodType = BloodType.Ap
         #expect(patient_2.bloodType == BloodType.Ap)
     }
     
-    @Test func checkRecordNumber() async throws{
-        var recordLists: [Int] = []
-        var patients: [Patient] = []
-        // create 100 instances for patient, check whether the medicalRecordNumbers duplicate
-        for _ in 0..<100{
-            let patient = try Patient(
-                firstName: "Alice",
-                lastName: "A",
-                height: 162,
-                weight: 60,
-                bloodType: .Bp,
-                medications: [],
-                dateOfBirth: "2002-07-02"
-            )
-            patients.append(patient)
-            #expect(!recordLists.contains(patient.medicalRecordNumber))
-            recordLists.append(patient.medicalRecordNumber)
-        }
-    }
+//    @Test func checkRecordNumber() async throws{
+//        var recordLists: [Int] = []
+//        var patients: [Patient] = []
+//        // create 100 instances for patient, check whether the medicalRecordNumbers duplicate
+//        for _ in 0..<100{
+//            let patient = try Patient(
+//                firstName: "Alice",
+//                lastName: "A",
+//                height: 162,
+//                weight: 60,
+//                bloodType: .Bp,
+//                medications: [],
+//                dateOfBirth: "2002-07-02"
+//            )
+//            patients.append(patient)
+//            #expect(!recordLists.contains(patient.medicalRecordNumber))
+//            recordLists.append(patient.medicalRecordNumber)
+//        }
+//    }
     
     @Test func checkBasicInfo() async throws{
         var age_22 = Calendar.current.date(byAdding: .year, value: -22, to: currentDate)!

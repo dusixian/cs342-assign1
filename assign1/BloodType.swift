@@ -10,6 +10,6 @@ enum BloodType: String{
     case Bp = "B+", Bn = "B-"
     case Op = "O+", On = "O-"
     case ABp = "AB+",ABn = "AB-"
-    case Unknown = "Unknown"
+//    case Unknown = "Unknown"
 }
 
