@@ -47,7 +47,7 @@
 3. Tap add medication button to create duplicate medication (name is same as previous). Check if duplicate medication alert shows.
 
 ## AI Integration
-This assignment uses AI ([shared link](https://chatgpt.com/share/678b2759-d588-8006-9938-5aef806a3117)). Code that integrates with AI is commented in the repository.
+This assignment uses AI ([shared link](https://chatgpt.com/share/678b2759-d588-8006-9938-5aef806a3117)).
 
 
 # Sixian Du's Submission for Assignment 1 - CS342
