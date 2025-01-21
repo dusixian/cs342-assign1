@@ -128,7 +128,7 @@ struct MedicationSheetView: View {
         
         do {
             let newMedication = try Medication(
-                date: stringFromDate(Date()),
+                date: Date(),
                 name: name,
                 dose: doseValue,
                 route: route,

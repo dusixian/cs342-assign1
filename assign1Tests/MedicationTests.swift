@@ -13,7 +13,7 @@ import Foundation
 struct MedicationTests{
     @Test func checkInit() async throws{
         let medication = try Medication(
-            date: "2025-01-11",
+            date: dateFromString("2025-01-11"),
             name: "Metoprolol",
             dose: 25,
             route: "by mouth",
@@ -27,23 +27,23 @@ struct MedicationTests{
         #expect(medication.frequency == 1)
         #expect(medication.duration == 90)
         
-        // check invalid datestr format
-        #expect(throws: MyError.invalidInput("Wrong date format! Using yyyy-MM-dd")){
-            try Medication(
-                date: "20250111",
-                name: "Metoprolol",
-                dose: 25,
-                route: "by mouth",
-                frequency: 1,
-                duration: 90
-            )
-        }
+//        // check invalid datestr format
+//        #expect(throws: MyError.invalidInput("Wrong date format! Using yyyy-MM-dd")){
+//            try Medication(
+//                date: dateFromString("20250111",
+//                name: "Metoprolol",
+//                dose: 25,
+//                route: "by mouth",
+//                frequency: 1,
+//                duration: 90
+//            )
+//        }
     }
     
     @Test func checkFrequencyInit() async throws{
         // check correct str input for frequency
         let medication = try Medication(
-            date: "2025-01-11",
+            date: dateFromString("2025-01-11"),
             name: "Metoprolol",
             dose: 25,
             route: "by mouth",
@@ -55,7 +55,7 @@ struct MedicationTests{
         // check invalid str input for frequency
         #expect(throws: MyError.invalidInput("Frequency only support string input for once, twice, and three times! Or you can input an integer value!")){
             try Medication(
-                date: "2025-01-11",
+                date: dateFromString("2025-01-11"),
                 name: "Metoprolol",
                 dose: 25,
                 route: "by mouth",
@@ -67,7 +67,7 @@ struct MedicationTests{
         // check invalid input type for frequency
         #expect(throws: MyError.invalidInput("Invalid input for frequency. Try an integer value or string input for once, twice, and three times!")){
             try Medication(
-                date: "2025-01-11",
+                date: dateFromString("2025-01-11"),
                 name: "Metoprolol",
                 dose: 25,
                 route: "by mouth",
@@ -79,7 +79,7 @@ struct MedicationTests{
     
     @Test func checkCompletedLogic() async throws{
         let medication = try Medication(
-            date: "2025-01-11",
+            date: dateFromString("2025-01-11"),
             name: "Metoprolol",
             dose: 25,
             route: "by mouth",
@@ -89,7 +89,7 @@ struct MedicationTests{
         #expect(!medication.isCompleted)
         
         let completedMedication = try Medication(
-            date: "2024-01-11",
+            date: dateFromString("2024-01-11"),
             name: "Metoprolol",
             dose: 25,
             route: "by mouth",

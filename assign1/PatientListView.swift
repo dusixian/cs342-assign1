@@ -14,13 +14,13 @@ struct PatientListView: View {
     // add some example here for better preview
     @State var patients: [Patient] = [
         try! Patient(
-            firstName: "Rachel", lastName: "Green", height: 162, weight: 60, gender: Gender.Female, bloodType: BloodType.Bp, medications: [], dateOfBirth: "2002-07-02"),
+            firstName: "Rachel", lastName: "Green", height: 162, weight: 60, gender: Gender.Female, bloodType: BloodType.Bp, medications: [], dateOfBirth: dateFromString("2002-07-02")),
         try! Patient(
-            firstName: "Chandler", lastName: "Bing", height: 172, weight: 50, gender: Gender.Male, bloodType: BloodType.Ap, medications: [], dateOfBirth: "2001-06-03"),
+            firstName: "Chandler", lastName: "Bing", height: 172, weight: 50, gender: Gender.Male, bloodType: BloodType.Ap, medications: [], dateOfBirth: dateFromString("2001-06-03")),
         try! Patient(
-            firstName: "Ross", lastName: "Geller", height: 180, weight: 78, medications: [], dateOfBirth: "1996-10-06"),
+            firstName: "Ross", lastName: "Geller", height: 180, weight: 78, medications: [], dateOfBirth: dateFromString("1996-10-06")),
         try! Patient(
-            firstName: "Monica", lastName: "Geller", height: 160, weight: 48, gender: Gender.Female, bloodType: BloodType.On, medications: [], dateOfBirth: "2000-09-06")
+            firstName: "Monica", lastName: "Geller", height: 160, weight: 48, gender: Gender.Female, bloodType: BloodType.On, medications: [], dateOfBirth: dateFromString("2000-09-06"))
     ]
     
     var body: some View {

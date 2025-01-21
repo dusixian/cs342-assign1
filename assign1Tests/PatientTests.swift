@@ -19,14 +19,14 @@ struct PatientTests{
             weight: 60,
             bloodType: BloodType.Bp,
             medications: [],
-            dateOfBirth: "2002-07-02"
+            dateOfBirth: dateFromString("2002-07-02")
         )
         
         #expect(patient.firstName == "Alice")
         #expect(patient.lastName == "A")
         #expect(patient.height == 162)
         #expect(patient.weight == 60)
-        #expect(patient.bloodType == .Bp)
+        #expect(patient.bloodType == BloodType.Bp)
         #expect(patient.medications.isEmpty)
         #expect(stringFromDate(patient.dateOfBirth) == "2002-07-02")
         
@@ -37,7 +37,7 @@ struct PatientTests{
             height: 162,
             weight: 60,
             medications: [],
-            dateOfBirth: "2002-07-02"
+            dateOfBirth: dateFromString("2002-07-02")
         )
         #expect(patient_2.bloodType == nil)
         
@@ -77,7 +77,7 @@ struct PatientTests{
             weight: 60,
             bloodType: .Bp,
             medications: [],
-            dateOfBirth: stringFromDate(age_22)
+            dateOfBirth: age_22
         )
         
         #expect(patient.basicInfo() == "A, Alice(22)")
@@ -86,7 +86,7 @@ struct PatientTests{
     @Test func checkGetAddMedications() async throws{
         // check get medications return in time order
         let medication_1 = try Medication(
-            date: "2025-01-11",
+            date: dateFromString("2025-01-11"),
             name: "Metoprolol",
             dose: 25,
             route: "by mouth",
@@ -95,7 +95,7 @@ struct PatientTests{
         )
         
         let medication_2 = try Medication(
-            date: "2025-01-01",
+            date: dateFromString("2025-01-01"),
             name: "Aspirin",
             dose: 81,
             route: "by mouth",
@@ -110,14 +110,14 @@ struct PatientTests{
             weight: 60,
             bloodType: .Bp,
             medications: [medication_1, medication_2],
-            dateOfBirth: "2002-07-02"
+            dateOfBirth: dateFromString("2002-07-02")
         )
         
         #expect(patient.getMedications() == [medication_2, medication_1])
         
         // check get medications not return complete one
         let medication_3 = try Medication(
-            date: "2024-01-11",
+            date: dateFromString("2024-01-11"),
             name: "Metoprolol",
             dose: 25,
             route: "by mouth",
@@ -130,7 +130,7 @@ struct PatientTests{
         
         // check add medication which: 1. not complete 2. not duplicate
         let medication_4 = try Medication(
-            date: "2025-01-11",
+            date: dateFromString("2025-01-11"),
             name: "Losartan",
             dose: 12.5,
             route: "by mouth",
@@ -141,7 +141,7 @@ struct PatientTests{
         
         // check add medication which: 1.not complete 2. duplicated
         let medication_5 = try Medication(
-            date: "2025-01-10",
+            date: dateFromString("2025-01-10"),
             name: "Losartan",
             dose: 1,
             route: "by mouth",
@@ -154,7 +154,7 @@ struct PatientTests{
         
         // check add medication which: 1. complete 2. duplicated
         let medication_6 = try Medication(
-            date: "2024-01-11",
+            date: dateFromString("2024-01-11"),
             name: "Losartan",
             dose: 12.5,
             route: "by mouth",
@@ -171,7 +171,7 @@ struct PatientTests{
             height: 162,
             weight: 60,
             medications: [],
-            dateOfBirth: "2002-07-02"
+            dateOfBirth: dateFromString("2002-07-02")
         )
         #expect(throws: MyError.missingBloodType){
             try patient.getCompatibleBloodType()
@@ -181,7 +181,7 @@ struct PatientTests{
         }
         
         patient.bloodType = BloodType.ABn
-        #expect(try patient.getCompatibleBloodType() == [.On, .Bn, .An, .ABn])
+        #expect(try patient.getCompatibleBloodType() == [BloodType.On, BloodType.Bn, BloodType.An, BloodType.ABn])
         #expect(try !patient.checkCompatibleBloodType(BloodType.Op))
         #expect(try patient.checkCompatibleBloodType(BloodType.An))
     }

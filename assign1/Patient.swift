@@ -32,9 +32,7 @@ class Patient: Identifiable, Hashable{
     }
     
     init(firstName: String, lastName: String, height: Double, weight: Double, gender: Gender? = nil,
-         bloodType: BloodType? = nil, medications: [Medication], dateOfBirth: Any) throws{
-//        self.medicalRecordNumber = Patient.idCount
-//        Patient.idCount += 1 // add by one to ensure unique
+         bloodType: BloodType? = nil, medications: [Medication], dateOfBirth: Date) throws{
         self.firstName = firstName
         self.lastName = lastName
         self.height = height
@@ -42,15 +40,7 @@ class Patient: Identifiable, Hashable{
         self.bloodType = bloodType
         self.medications = medications
         self.gender = gender
-        if let d = dateOfBirth as? Date{
-            self.dateOfBirth = d
-        }
-        else if let d = dateOfBirth as? String{
-            self.dateOfBirth = try dateFromString(d)!
-        }
-        else{
-            throw(MyError.invalidInput("Invalid input for date of birth."))
-        }
+        self.dateOfBirth = dateOfBirth
     }
     
     // getAge from birth to now

@@ -139,7 +139,7 @@ struct PatientFormView: View {
                 gender: Gender(rawValue: gender),
                 bloodType: BloodType(rawValue: bloodType),
                 medications: [],
-                dateOfBirth: stringFromDate(birthday)
+                dateOfBirth: birthday
             )
             onSave(newPatient)
             showPatientForm = false

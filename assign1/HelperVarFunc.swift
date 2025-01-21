@@ -18,11 +18,11 @@ enum Gender: String{
 }
 
 // This function is AI generated
-func dateFromString(_ dateString: String) throws-> Date? {
+func dateFromString(_ dateString: String) throws-> Date {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
-    if formatter.date(from: dateString) != nil {
-        return formatter.date(from: dateString)
+    if let date = formatter.date(from: dateString){
+        return date
     }
     else{
         throw MyError.invalidInput("Wrong date format! Using yyyy-MM-dd")
