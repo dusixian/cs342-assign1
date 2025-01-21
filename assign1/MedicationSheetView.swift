@@ -38,12 +38,19 @@ struct MedicationSheetView: View {
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                 }
-                HStack {
-                    Text("Route")
-                    TextField("Route (e.g., by mouth)", text: $route)
-                        .autocapitalization(.none)
-                        .multilineTextAlignment(.trailing)
+//                HStack {
+//                    Text("Route")
+//                    TextField("Route (e.g., by mouth)", text: $route)
+//                        .autocapitalization(.none)
+//                        .multilineTextAlignment(.trailing)
+//                }
+                Picker("Route", selection: $route) {
+                    Text("by mouth").tag("by mouth")
+                    Text("injection").tag("injection")
+                    Text("topical").tag("topical")
+                    Text("other").tag("other")
                 }
+                .accessibilityIdentifier("routePicker")
                 HStack {
                     Text("Frequency (per day)")
                     TextField("Frequency", text: $frequency)
@@ -131,7 +138,7 @@ struct MedicationSheetView: View {
                 date: Date(),
                 name: name,
                 dose: doseValue,
-                route: route,
+                route: Route(rawValue: route) ?? Route.other,
                 frequency: frequencyValue,
                 duration: durationValue
             )

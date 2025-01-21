@@ -89,7 +89,7 @@ struct PatientTests{
             date: dateFromString("2025-01-11"),
             name: "Metoprolol",
             dose: 25,
-            route: "by mouth",
+            route: Route.byMouth,
             frequency: 1,
             duration: 90
         )
@@ -98,7 +98,7 @@ struct PatientTests{
             date: dateFromString("2025-01-01"),
             name: "Aspirin",
             dose: 81,
-            route: "by mouth",
+            route: Route.byMouth,
             frequency: 1,
             duration: 90
         )
@@ -120,8 +120,8 @@ struct PatientTests{
             date: dateFromString("2024-01-11"),
             name: "Metoprolol",
             dose: 25,
-            route: "by mouth",
-            frequency: 1, 
+            route: Route.byMouth,
+            frequency: 1,
             duration: 90
         )
         
@@ -133,7 +133,7 @@ struct PatientTests{
             date: dateFromString("2025-01-11"),
             name: "Losartan",
             dose: 12.5,
-            route: "by mouth",
+            route: Route.byMouth,
             frequency: 1,
             duration: 90
         )
@@ -144,7 +144,7 @@ struct PatientTests{
             date: dateFromString("2025-01-10"),
             name: "Losartan",
             dose: 1,
-            route: "by mouth",
+            route: Route.byMouth,
             frequency: 1,
             duration: 20
         )
@@ -157,7 +157,7 @@ struct PatientTests{
             date: dateFromString("2024-01-11"),
             name: "Losartan",
             dose: 12.5,
-            route: "by mouth",
+            route: Route.byMouth,
             frequency: 1,
             duration: 90
         )
